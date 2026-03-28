@@ -1,0 +1,131 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block banner-slider %}
+
+<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'app/images/banner/b1.jpg'%}" class="d-block w-100" alt="BannerImage">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'app/images/banner/b2.jpg'%}" class="d-block w-100" alt="BannerImage">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'app/images/banner/b3.jpg'%}" class="d-block w-100" alt="BannerImage">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'app/images/banner/b4.jpg'%}" class="d-block w-100" alt="BannerImage">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+{% endblock banner-slider %}
+
+{% block information %}
+<br>
+<div class="container">
+  <div class="row bg-orange text-center p-5 border-bottom shadow text-white">
+    <h1>Products</h1>
+    <small class="fs-5">
+  Dodla offers a complete range of nutritious and delicious dairy products made for everyday consumption.
+  From fresh liquid milk to a variety of value-added dairy items, we ensure quality in every product.
+  <br><br>
+  Our collection includes Fresh Milk, Butter, Ghee, Paneer, Curd, Flavoured Milk, Doodh Peda,
+  Ice Cream, and Skimmed Milk Powder, delivering taste and goodness for all age groups.
+</small>
+
+  </div>
+</div>
+{% endblock information %}
+
+{% block main-content %}
+{% comment %} <div class="container">
+  <h2 class="text-center">Dairy Products</h2>
+  <br><br>{% endcomment %}
+<br>
+<br>
+<div class="container py-5">
+  <div class="row g-4">
+
+    <!-- Card 1 -->
+    <div class="col-md-4">
+      <div class="card product-card h-100 text-center">
+        <img src="{% static 'app/images/product/buffalo-ghee.png' %}" class="card-img-top p-4" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Ghee</h5>
+          <a href="{% url 'category' 'GH' %}" class="btn btn-primary">View Products</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-md-4">
+      <div class="card product-card h-100 text-center">
+        <img src="{% static 'app/images/product/curd-total.png' %}" class="card-img-top p-4" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Curd</h5>
+          <a href="{% url 'category' 'CR' %}" class="btn btn-primary">View Products</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-md-4">
+      <div class="card product-card h-100 text-center">
+        <img src="{% static 'app/images/product/kulfi.png' %}" class="card-img-top p-4" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Kulfi</h5>
+          <a href="{% url 'category' 'IC' %}" class="btn btn-primary">View Products</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="col-md-4">
+      <div class="card product-card h-100 text-center">
+        <img src="{% static 'app/images/product/milk-shake-chocolate.png' %}" class="card-img-top p-4" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Milk Shake</h5>
+          <a href="{% url 'category' 'MS' %}" class="btn btn-primary">View Products</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="col-md-4">
+      <div class="card product-card h-100 text-center">
+        <img src="{% static 'app/images/product/icbars.png' %}" class="card-img-top p-4" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Ice Bar</h5>
+          <a href="{% url 'category' 'IC' %}" class="btn btn-primary">View Products</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="col-md-4">
+      <div class="card product-card h-100 text-center">
+        <img src="{% static 'app/images/product/cow-milk.png' %}" class="card-img-top p-4" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Milk</h5>
+          <a href="{% url 'category' 'ML' %}" class="btn btn-primary">View Products</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+{% endblock main-content %}
+

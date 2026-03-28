@@ -1,0 +1,53 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock title %}
+
+{% block main-content %}
+<div class="container mt-5 mb-5">
+  <h2 class="text-center mb-4">Login</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm p-4 border-0">
+        <form action="" method="post" novalidate class="shadow p-4">
+          {% csrf_token %}
+          {% for fm in form %}
+            {{ fm.label_tag }} {{ fm }}
+            <small class="text-danger">{{ fm.errors|striptags }}</small><br>
+          {% endfor %}
+          <input type="submit" value="Login" class="btn btn-primary w-100"><br>
+
+          <!-- 🔹 Forgot Password Button -->
+          <div class="text-center mt-3">
+            <a href="{% url 'password_reset' %}" class="btn btn-link text-decoration-none text-danger fw-bold">
+              Forgot Password?
+            </a>
+          </div>
+
+          <!-- 🔹 Registration Link -->
+          <div class="text-center text-primary fw-bold mt-3">
+            <small>New User? 
+              <a href="{% url 'customerregistration' %}" class="text-danger">Register Now</a>
+            </small>
+          </div>
+
+          <!-- 🔹 Form Errors -->
+          {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+              <p class="alert alert-danger my-3">{{ error }}</p>
+            {% endfor %}
+          {% endif %}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main-content %}
+
+
+
+
+
+
+
+

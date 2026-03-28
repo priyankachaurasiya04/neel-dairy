@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Product |{% block title %}{% endblock title %}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'app/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="/">
+      <img src="{% static 'app/images/product/Neel.png' %}" alt="Neel Product" width="100" height="70">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {% if request.user.is_authenticated %}
+
+        <li class="nav-item">
+          <a class="nav-link active" href="/">Home</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            Products
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'category' 'ML' %}">Milk</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'CR' %}">Curd</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'MS' %}">MilkShake</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'LS' %}">Lassi</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'GH' %}">Ghee</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'PN' %}">Paneer</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'IC' %}">Ice-Creams</a></li>
+            <li><a class="dropdown-item" href="{% url 'category' 'CZ' %}">Cheese</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'about' %}">About Us</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'contact' %}">Contact Us</a>
+        </li>
+
+      </ul>
+
+      <form class="d-flex" role="search" action="/search">
+        <input class="form-control me-2" type="search" name="search" placeholder="Search">
+        <button class="btn btn-outline-light" type="submit">Search</button>
+      </form>
+
+      <ul class="navbar-nav ms-3">
+
+        <li class="nav-item dropdown mx-2">
+          <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown">
+            {{ request.user.username }}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+            <li><a class="dropdown-item" href="{% url 'orders' %}">Orders</a></li>
+            <li><a class="dropdown-item" href="{% url 'passwordchange' %}">Change Password</a></li>
+            <li>
+              <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="dropdown-item">Logout</button>
+              </form>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item mx-2">
+          <a href="{% url 'showcart' %}" class="nav-link text-white">
+            <span class="badge bg-danger">
+              {% if totalitem > 0 %}{{ totalitem }}{% endif %}
+            </span>
+            Cart
+          </a>
+        </li>
+
+        <li class="nav-item mx-2">
+          <a href="{% url 'showwishlist' %}" class="nav-link text-white">
+            <span class="badge bg-danger">
+              {% if wishlist > 0 %}{{ wishlist }}{% endif %}
+            </span>
+            <i class="fa fa-heart"></i>
+          </a>
+        </li>
+
+        {% else %}
+
+        <li class="nav-item mx-2">
+          <a href="{% url 'login' %}" class="nav-link text-white">Login</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="{% url 'customerregistration' %}" class="nav-link text-white">Registration</a>
+        </li>
+
+        {% endif %}
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<main class="flex-fill">
+
+  {% block banner-slider %}{% endblock %}
+  {% block information %}{% endblock %}
+  {% block main-content %}{% endblock %}
+  {% block payment-gateway %}{% endblock %}
+
+</main>
+<footer class="bg-dark text-white mt-auto">
+  <div class="container py-4">
+    <div class="row">
+
+      <div class="col-md-4">
+        <h5>Daily Product</h5>
+        <p class="text-white-50">
+          Daily Product is an online dairy product website that provides
+          fresh and hygienic milk products to customers.
+        </p>
+      </div>
+
+      <div class="col-md-4">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="/" class="text-white text-decoration-none">Home</a></li>
+          <li><a href="{% url 'about' %}" class="text-white text-decoration-none">About Us</a></li>
+          <li><a href="{% url 'contact' %}" class="text-white text-decoration-none">Contact Us</a></li>
+          <li><a href="{% url 'showcart' %}" class="text-white text-decoration-none">Cart</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-4">
+        <h5>Contact Us</h5>
+        <p class="mb-1">📍 Chh. Sambhajinagar, Maharashtra</p>
+        <p class="mb-1">📞 +91 XXXXXXXXXX</p>
+        <p>✉ support@dailyproduct.com</p>
+      </div>
+
+    </div>
+
+    <hr class="border-light">
+
+    <div class="text-center">
+      © 2026 Daily Product | Developed by Priyanka Chaurasiya
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"></script>
+
+<script src="{% static 'app/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'app/js/myscript.js' %}"></script>
+
+<script>
+  $(document).on("click", ".plus-wishlist", function () {
+      let id = $(this).attr("pid");
+      $.ajax({
+          url: "/pluswishlist/",
+          data: { prod_id: id },
+          dataType: "json",
+          success: function () {
+              location.reload();
+          }
+      });
+  });
+
+  $(document).on("click", ".minus-wishlist", function () {
+      let id = $(this).attr("pid");
+      $.ajax({
+          url: "/minuswishlist/",
+          data: { prod_id: id },
+          dataType: "json",
+          success: function () {
+              location.reload();
+          }
+      });
+  });
+</script>
+
+</body>
+</html>

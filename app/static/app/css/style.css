@@ -1,0 +1,135 @@
+/* ------------------------------------------------------
+   YOUR ORIGINAL STYLES (KEPT SAME)
+-------------------------------------------------------*/
+
+.buttermilk {
+  background-color: #ffffff;
+  background-image: linear-gradient(#fff7ef, #fff);
+  background-image: -webkit-linear-gradient(#fff7ef, #fff);
+  background-image: -moz-linear-gradient(#fff7ef, #fff);
+  background-image: -ms-linear-gradient(#d68839, #fff);
+  background-image: -o-linear-gradient(#fff7ef, #fff);
+  padding: 50px 40px;
+  border: 1px solid #efe8e1;
+  padding-bottom: 20px;
+}
+
+.smbg {
+  background-color: #b83b3b;
+  background-image: linear-gradient(rgba(110, 69, 143, 0.1), #fff);
+  background-image: -webkit-linear-gradient(rgba(115, 28, 186, 0.1), #fff);
+  background-image: -moz-linear-gradient(rgba(69, 143, 123, 0.1), #fff);
+  background-image: -ms-linear-gradient(rgba(110, 69, 143, 0.1), #fff);
+  background-image: -o-linear-gradient(rgba(110, 69, 143, 0.1), #fff);
+}
+
+.curdbgpro {
+  background-color: #ffffff;
+  background-image: linear-gradient(rgba(10, 77, 123, 0.1), #fff);
+  background-image: -webkit-linear-gradient(rgba(10, 77, 123, 0.1), #fff);
+  background-image: -moz-linear-gradient(rgba(18, 191, 136, 0.1), #fff);
+  background-image: -ms-linear-gradient(rgba(10, 77, 123, 0.1), #fff);
+  background-image: -o-linear-gradient(rgba(10, 77, 123, 0.1), #fff);
+}
+
+.mlkpro {
+  color: #636362;
+  font-size: 22px;
+  line-height: 22px;
+  margin-bottom: 15px;
+  width: 43%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.goodnesssec a {
+  text-decoration: none;
+}
+
+
+/* ------------------------------------------------------
+   ⭐ FIXED PRODUCT BOX + IMAGE CONTROL (IMPORTANT)
+-------------------------------------------------------*/
+
+/* ALL PRODUCT BOXES SAME SIZE */
+.goodnesssec {
+  height: 280px;                  /* Fixed box height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;                /* Prevent overflow */
+  border-radius: 10px;
+  padding: 15px !important;        /* Balanced padding */
+}
+
+/* IMAGE FIX — STAY INSIDE BOX */
+.goodnesssecont img {
+  max-height:180px;               /* Prevent extra-tall images */
+  width: auto;
+  object-fit: contain;             /* Keep proportion */
+  display: block;
+  margin: 0 auto;
+}
+
+/* TEXT ADJUSTMENT */
+.mlkpro {
+  margin-top: 10px !important;
+  width: auto !important;
+}
+
+/* .mission-box {
+    background-color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    color: #333;
+  } */
+
+
+/* ------------------------------------------------------
+   ⭐ OPTIONAL: HOVER EFFECT (UNCOMMENT IF YOU WANT)
+-------------------------------------------------------
+
+.goodnesssecont img:hover {
+  transform: scale(1.08);
+  transition: 0.3s;
+}
+
+-------------------------------------------------------*/
+.custom-shadow {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  min-height: 160px;
+}
+
+.custom-shadow:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  transform: translateY(-5px);
+}
+
+
+.bg-orange {
+  background-color: #fca82b; /* material orange */
+}
+
+
+.product-card{
+    border:none;
+    border-radius:15px;
+    transition:0.3s;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+.product-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 8px 25px rgba(0,0,0,0.2);
+}
+
+.product-card img{
+    height:200px;
+    object-fit:contain;
+}
+
+.product-card .btn{
+    border-radius:25px;
+    padding:8px 20px;
+}

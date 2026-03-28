@@ -1,0 +1,121 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+{% block title %}Contact Us{% endblock title %}
+
+{% block main-content %}
+<div class="container mt-5 mb-5">
+
+  <!-- Page Heading -->
+  <div class="text-center mb-5">
+    <h1 class="fw-bold">Contact Us</h1>
+    <p class="text-muted mx-auto" style="max-width: 800px;">
+      Have a question, feedback, or issue? We’d love to hear from you!  
+      Fill out the form below or reach us directly through our contact details.
+    </p>
+  </div>
+
+  <!-- Contact Info -->
+  <div class="row mb-5 text-center">
+    <div class="col-md-4 mb-4">
+      <div class="card border-0 custom-shadow py-4">
+        <i class="bi bi-geo-alt-fill text-danger fs-2 mb-3"></i>
+        <h5 class="fw-bold">Our Address</h5>
+        <p class="text-muted">Chh. Sambhajinagar, Maharashtra</p>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card border-0 custom-shadow py-4">
+        <i class="bi bi-telephone-fill text-success fs-2 mb-3"></i>
+        <h5 class="fw-bold">Phone</h5>
+        <p class="text-muted">+91 XXXXXXXXXX</p>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card border-0 custom-shadow  py-4">
+        <i class="bi bi-envelope-fill text-primary fs-2 mb-3"></i>
+        <h5 class="fw-bold">Email</h5>
+        <p class="text-muted">support@dailyproduct.com</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Form -->
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+          <h4 class="fw-bold mb-3 text-center">Send Us a Message</h4>
+          {% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+  {% endfor %}
+{% endif %}
+
+          <form method="post" action="{% url 'contact' %}">
+            {% csrf_token %}
+         
+
+  <div class="mb-3">
+    <label for="name" class="form-label">Your Name</label>
+    <input 
+      type="text" 
+      class="form-control" 
+      id="name"
+      name="name"
+      placeholder="Enter your name" 
+      required>
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email address</label>
+    <input 
+      type="email" 
+      class="form-control" 
+      id="email"
+      name="email"
+      placeholder="Enter your email" 
+      required>
+  </div>
+
+  <div class="mb-3">
+    <label for="message" class="form-label">Message</label>
+    <textarea 
+      class="form-control" 
+      id="message"
+      name="message"
+      rows="4"
+      placeholder="Write your message" 
+      required></textarea>
+  </div>
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-success px-4 py-2">
+      Send Message
+    </button>
+  </div>
+</form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Google Map (Optional) -->
+  <div class="mt-5 text-center">
+    <h4 class="fw-bold mb-3">Find Us On Map</h4>
+    <iframe
+  src="https://www.google.com/maps?q=20Chh.%20Sambhajinagar%20Maharashtra%20India&output=embed"
+  width="100%"
+  height="350"
+  style="border:0; border-radius:10px;"
+  allowfullscreen
+  loading="lazy">
+</iframe>
+  </div>
+
+</div>
+{% endblock main-content %}
