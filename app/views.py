@@ -237,8 +237,9 @@ class checkout(View):
         amount = sum(p.quantity * p.product.discounted_price for p in cart_items)
         totalamount = amount + 40
         razoramount = int(totalamount * 100)
+        
 
-        client = razorpay.Client(auth=(settings.RAZOR_KEY_ID, settings.RAZOR_KEY_SECRET))
+        client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
         data = {"amount": razoramount, "currency": "INR", "receipt": "order_rcptid_12"}
         payment_response = client.order.create(data=data)
 
@@ -256,12 +257,17 @@ class checkout(View):
             "cart_items": cart_items,
             "totalamount": totalamount,
             "order_id": order_id,
+            "razor_key_id": settings.RAZORPAY_KEY_ID,
+            "razoramount": razoramount,
             "totalitem": totalitem,
             "whisitem": whisitem
+            
         })
+    # def post(self, request):
+    #     return redirect("orders")
 
 
-@login_required
+# @login_required
 def payment_done(request):
     order_id = request.GET.get('order_id')
     payment_id = request.GET.get('payment_id')
@@ -383,3 +389,14 @@ def wishlist(request):
         "totalitem": totalitem,
         "whisitem": whisitem
     })
+
+
+################################################# Razorpay Integration Setup  #################################################
+
+from django.conf import settings
+import razorpay
+
+client = razorpay.Client(auth=(
+    settings.RAZORPAY_KEY_ID,
+    settings.RAZORPAY_KEY_SECRET
+))

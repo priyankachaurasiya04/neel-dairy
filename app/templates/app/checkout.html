@@ -67,9 +67,9 @@
                     <!-- <div id="paypal-button-container"></div> -->
                      {% comment %} <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold">Continue</button> {% endcomment %}
 
-                    <button id="rzp-button1" type="submit" class="btn btn-warning mt-3 px-5 fw-bold">
-                        Payment
-                    </button> 
+                   <button id="rzp-button1" type="button" class="btn btn-warning mt-3 px-5 fw-bold">
+                Payment
+            </button>
 
                 </div>
             </form>
@@ -78,23 +78,19 @@
 </div>
 {% endblock main-content %}
 {% block payment-gateway %}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
     var options = {
-        "key": "rzp_test_SRVgutvPiSa2cv", // Enter the Key ID generated from Razorpay Dashboard
-        "amount": "{{ razoramount }}", // Amount is in currency subunits (e.g., 50000 = ₹500)
+        "key": "{{ razor_key_id }}",
+        "amount": "{{ razoramount }}",
         "currency": "INR",
         "name": "Mavericks",
         "description": "Purchase Product",
-        "order_id": "{{ order_id }}", // Pass the order_id obtained in response of Step 1
+        "order_id": "{{ order_id }}",
 
         "handler": function (response) {
             console.log("success");
             var form = document.getElementById("myform");
-            // Uncomment to debug responses:
-            // alert(form.elements["custid"].value);
-            // alert(response.razorpay_payment_id);
-            // alert(response.razorpay_order_id);
-            // alert(response.razorpay_signature);
 
             window.location.href = `http://localhost:8000/paymentdone?order_id=${response.razorpay_order_id}&payment_id=${response.razorpay_payment_id}&cust_id=${form.elements["custid"].value}`;
         },
@@ -107,6 +103,13 @@
     var rzp1 = new Razorpay(options);
 
     document.getElementById('rzp-button1').onclick = function (e) {
+        var selectedAddress = document.querySelector('input[name="custid"]:checked');
+
+        if (!selectedAddress) {
+            alert("Please select an address first.");
+            return;
+        }
+
         rzp1.open();
         e.preventDefault();
     }
